@@ -30,6 +30,10 @@ mkdir Github
 
 ## Install oh-my-zsh
 sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
+cd ~/Github
+git clone https://github.com/powerline/fonts.git
+cd fonts
+sh install.sh
 
 ## Config ranger
 ranger --copy-config=all
@@ -37,7 +41,6 @@ sudo pacman -S highlight mediainfo catdoc docx2txt poppler
 git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons
 cd ~/Github
 git clone https://github.com/ryanoasis/nerd-fonts.git
-git clone https://github.com/powerline/fonts.git
 
 ## Config Desktop env
 cd ~/Github
