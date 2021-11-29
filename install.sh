@@ -10,10 +10,13 @@
 # mount /dev/sda3 /mnt
 # mkdir /mnt/boot
 # mount /dev/sda1 /mnt/boot
-# vi /etc/pacman.d/mirrorlist # Server = https://mirrors.huaweicloud.com/archlinux/$repo/os/$arch
+## vi /etc/pacman.d/mirrorlist # Server = https://mirrors.huaweicloud.com/archlinux/$repo/os/$arch
 # pacstrap /mnt base linux linux-firmware
 # genfstab -U /mnt >> /mnt/etc/fstab
 # arch-chroot /mnt
+## vi /etc/locale.gen and open en_US.UTF-8 ...
+# locale-gen
+# cat LANG=en_US.UTF-8 > /etc/locale.conf
 # pacman -S grub efibootmgr intel-ucode os-prober
 # grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=Archlinux
 # grub-mkconfig -o /boot/grub/grub.cfg
@@ -49,5 +52,15 @@ cd dwm
 sudo make clean install
 cd ~/Github
 git clone git clone https://git.suckless.org/st
+
+## Install docker nvidia-docker
+sudo pacman -S docker
+systemctl enable docker
+systemctl start docker
+yay -S nvidia-container-toolkit
+# set no-cgroups=true in file of /etc/nvidia-container-runtime/config.toml
+# add GRUB_CMDLINE_LINUX_DEFAULT="systemd.unified_cgroup_hierarchy=false" in file of /etc/default/grub
+grub-mkconfig -o /boot/grub/grub.cfg
+systemctl restart docker
 cd ../st
 sudo make clean install
